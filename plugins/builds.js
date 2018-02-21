@@ -17,7 +17,7 @@ const DEFAULT_BYTES = 1024 * 1024 * 1024; // 1GB
  * @param  {Integer}  options.maxByteSize   Maximum Bytes to accept
  * @param  {Function} next                  Function to call when done
  */
-exports.register = (server, options, next) => {
+exports.plugin = (server, options, next) => {
     const cache = server.cache({
         segment: 'builds',
         expiresIn: parseInt(options.expiresInSec, 10) || DEFAULT_TTL
@@ -135,6 +135,6 @@ exports.register = (server, options, next) => {
     next();
 };
 
-exports.register.attributes = {
+exports.plugin.attributes = {
     name: 'builds'
 };
